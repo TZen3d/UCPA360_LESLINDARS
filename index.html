@@ -7,8 +7,9 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/
+        fontawesome-all.min.css">    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>    
         <style>
         #map {
             width: 1453px;
@@ -18,12 +19,11 @@
         <title></title>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>
-
     </head>
     <body>
         <div id="panorama" style="height : 500px; width: 1463px; margin-bottom: 10px"></div>
         <div id="map">
-        </div>
+
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
@@ -33,12 +33,10 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/proj4.js"></script>
-        <script src="js/proj4leaflet.js"></script>
-        <script src="data/LesLindarsRDC_1.js"></script>
-        <script src="data/LesLindarsEntresol_4.js"></script>
-        <script src="data/LesLindarsR1_6.js"></script>
-        <script src="data/LesLindarsR2_8.js"></script>
+        <script src="data/LesLindarsRDC_3857_2.js"></script>
+        <script src="data/LesLindarsEntresol_3857_5.js"></script>
+        <script src="data/LesLindarsR1_3857_9.js"></script>
+        <script src="data/LesLindarsR2_3857_11.js"></script>
 
         <script>
         var highlightLayer;
@@ -56,15 +54,9 @@
               });
             }
         }
-        var crs = new L.Proj.CRS('EPSG:2154', '+proj=lcc +lat_0=46.5 +lon_0=3 +lat_1=49 +lat_2=44 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs', {
-            resolutions: [2800, 1400, 700, 350, 175, 84, 42, 21, 11.2, 5.6, 2.8, 1.4, 0.7, 0.35, 0.14, 0.07],
-        });
         var map = L.map('map', {
-            crs: crs,
-            continuousWorld: false,
-            worldCopyJump: false, 
-            zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[46.00507671743165,6.693045810899128],[46.00611310694001,6.695587817775618]]);
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[46.00540042096742,6.693589809948811],[46.00585654099085,6.6947764087773995]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -72,18 +64,28 @@
         function setBounds() {
         }
 
-        // Plan RDC image
-        map.createPane('pane_DOEniv01_50_georeferenced_0');
-        map.getPane('pane_DOEniv01_50_georeferenced_0').style.zIndex = 400;
-        var img_DOEniv01_50_georeferenced_0 = 'data/DOEniv01_50_georeferenced_0.png';
-        var img_bounds_DOEniv01_50_georeferenced_0 = [[46.00536412180267,6.693548002190659],[46.00585304056715,6.694767036411781]];
-        var layer_DOEniv01_50_georeferenced_0 = new L.imageOverlay(img_DOEniv01_50_georeferenced_0,
-                                              img_bounds_DOEniv01_50_georeferenced_0,
-                                              {pane: 'pane_DOEniv01_50_georeferenced_0'});
-        bounds_group.addLayer(layer_DOEniv01_50_georeferenced_0);
+       /* // Plan R-1 image
+        map.createPane('pane_DOEniv11_50_georeferenced_3857_0');
+        map.getPane('pane_DOEniv11_50_georeferenced_3857_0').style.zIndex = 400;
+        var img_DOEniv11_50_georeferenced_3857_0 = 'data/DOEniv11_50_georeferenced_3857_0.png';
+        var img_bounds_DOEniv11_50_georeferenced_3857_0 = [[46.005473177499695,6.693734188309583],[46.00574804016097,6.694525569501196]];
+        var layer_DOEniv11_50_georeferenced_3857_0 = new L.imageOverlay(img_DOEniv11_50_georeferenced_3857_0,
+                                              img_bounds_DOEniv11_50_georeferenced_3857_0,
+                                              {pane: 'pane_DOEniv11_50_georeferenced_3857_0'});
+        bounds_group.addLayer(layer_DOEniv11_50_georeferenced_3857_0);*/
 
-        // Points de vue RDC
-        function pop_LesLindarsRDC_1(feature, layer) {
+        // plan RDC image
+        map.createPane('pane_DOEniv01_50_georeferenced_3857_1');
+        map.getPane('pane_DOEniv01_50_georeferenced_3857_1').style.zIndex = 401;
+        var img_DOEniv01_50_georeferenced_3857_1 = 'data/DOEniv01_50_georeferenced_3857_1.png';
+        var img_bounds_DOEniv01_50_georeferenced_3857_1 = [[46.005449355728075,6.693734188309583],[46.005748040160945,6.694525569501204]];
+        var layer_DOEniv01_50_georeferenced_3857_1 = new L.imageOverlay(img_DOEniv01_50_georeferenced_3857_1,
+                                              img_bounds_DOEniv01_50_georeferenced_3857_1,
+                                              {pane: 'pane_DOEniv01_50_georeferenced_3857_1'});
+        bounds_group.addLayer(layer_DOEniv01_50_georeferenced_3857_1);
+
+        // 360 RDC
+        function pop_LesLindarsRDC_3857_2(feature, layer) {
             let url = feature.properties['360']
             layer.on({
                 mouseout: function(e) {
@@ -96,6 +98,7 @@
                     showPannellum(url)
                 }
             });
+
             /*var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
@@ -107,9 +110,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});*/
         }
 
-        function style_LesLindarsRDC_1_0() {
+        function style_LesLindarsRDC_3857_2_0() {
             return {
-                pane: 'pane_LesLindarsRDC_1',
+                pane: 'pane_LesLindarsRDC_3857_2',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(83,83,83,1.0)',
@@ -123,49 +126,49 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_LesLindarsRDC_1');
-        map.getPane('pane_LesLindarsRDC_1').style.zIndex = 401;
-        map.getPane('pane_LesLindarsRDC_1').style['mix-blend-mode'] = 'normal';
-        var layer_LesLindarsRDC_1 = new L.geoJson(json_LesLindarsRDC_1, {
+        map.createPane('pane_LesLindarsRDC_3857_2');
+        map.getPane('pane_LesLindarsRDC_3857_2').style.zIndex = 402;
+        map.getPane('pane_LesLindarsRDC_3857_2').style['mix-blend-mode'] = 'normal';
+        var layer_LesLindarsRDC_3857_2 = new L.geoJson(json_LesLindarsRDC_3857_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_LesLindarsRDC_1',
-            layerName: 'layer_LesLindarsRDC_1',
-            pane: 'pane_LesLindarsRDC_1',
-            onEachFeature: pop_LesLindarsRDC_1,
+            dataVar: 'json_LesLindarsRDC_3857_2',
+            layerName: 'layer_LesLindarsRDC_3857_2',
+            pane: 'pane_LesLindarsRDC_3857_2',
+            onEachFeature: pop_LesLindarsRDC_3857_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_LesLindarsRDC_1_0(feature));
+                return L.circleMarker(latlng, style_LesLindarsRDC_3857_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_LesLindarsRDC_1);
+        bounds_group.addLayer(layer_LesLindarsRDC_3857_2,);
 
-        // Regroupement RDC
-        var rdc = L.layerGroup([layer_LesLindarsRDC_1, layer_DOEniv01_50_georeferenced_0]);
+        // Groupe RDC
+        var rdc = L.layerGroup([layer_LesLindarsRDC_3857_2, layer_DOEniv01_50_georeferenced_3857_1]);
 
         // Plan Entresol image
-        map.createPane('pane_DOEniventresol1_50_georeferenced_2');
-        map.getPane('pane_DOEniventresol1_50_georeferenced_2').style.zIndex = 402;
-        var img_DOEniventresol1_50_georeferenced_2 = 'data/DOEniventresol1_50_georeferenced_2.png';
-        var img_bounds_DOEniventresol1_50_georeferenced_2 = [[46.00540396279701,6.693550678473747],[46.005853040567175,6.694767036411801]];
-        var layer_DOEniventresol1_50_georeferenced_2 = new L.imageOverlay(img_DOEniventresol1_50_georeferenced_2,
-                                              img_bounds_DOEniventresol1_50_georeferenced_2,
-                                              {pane: 'pane_DOEniventresol1_50_georeferenced_2'});
-        bounds_group.addLayer(layer_DOEniventresol1_50_georeferenced_2);
-        map.createPane('pane_ExtraitNIveauintermdiaire_georef_3');
-        map.getPane('pane_ExtraitNIveauintermdiaire_georef_3').style.zIndex = 403;
-        var img_ExtraitNIveauintermdiaire_georef_3 = 'data/ExtraitNIveauintermdiaire_georef_3.png';
-        var img_bounds_ExtraitNIveauintermdiaire_georef_3 = [[46.00544836968616,6.693785779796656],[46.00575766875386,6.694393926803003]];
-        var layer_ExtraitNIveauintermdiaire_georef_3 = new L.imageOverlay(img_ExtraitNIveauintermdiaire_georef_3,
-                                              img_bounds_ExtraitNIveauintermdiaire_georef_3,
-                                              {pane: 'pane_ExtraitNIveauintermdiaire_georef_3'});
-        bounds_group.addLayer(layer_ExtraitNIveauintermdiaire_georef_3);
+        map.createPane('pane_DOEniventresol1_50_georeferenced_3857_3');
+        map.getPane('pane_DOEniventresol1_50_georeferenced_3857_3').style.zIndex = 403;
+        var img_DOEniventresol1_50_georeferenced_3857_3 = 'data/DOEniventresol1_50_georeferenced_3857_3.png';
+        var img_bounds_DOEniventresol1_50_georeferenced_3857_3 = [[46.00547579208377,6.693734188309583],[46.005748040160874,6.694525569501196]];
+        var layer_DOEniventresol1_50_georeferenced_3857_3 = new L.imageOverlay(img_DOEniventresol1_50_georeferenced_3857_3,
+                                              img_bounds_DOEniventresol1_50_georeferenced_3857_3,
+                                              {pane: 'pane_DOEniventresol1_50_georeferenced_3857_3'});
+        bounds_group.addLayer(layer_DOEniventresol1_50_georeferenced_3857_3);
 
-        // Points de vue Entresol 
-        function pop_LesLindarsEntresol_4(feature, layer) {
+        map.createPane('pane_ExtraitNIveauintermdiaire_georef_3857_4');
+        map.getPane('pane_ExtraitNIveauintermdiaire_georef_3857_4').style.zIndex = 404;
+        var img_ExtraitNIveauintermdiaire_georef_3857_4 = 'data/ExtraitNIveauintermdiaire_georef_3857_4.png';
+        var img_bounds_ExtraitNIveauintermdiaire_georef_3857_4 = [[46.005484907749114,6.693876177235962],[46.00570218388193,6.694293195668355]];
+        var layer_ExtraitNIveauintermdiaire_georef_3857_4 = new L.imageOverlay(img_ExtraitNIveauintermdiaire_georef_3857_4,
+                                              img_bounds_ExtraitNIveauintermdiaire_georef_3857_4,
+                                              {pane: 'pane_ExtraitNIveauintermdiaire_georef_3857_4'});
+        bounds_group.addLayer(layer_ExtraitNIveauintermdiaire_georef_3857_4);
+
+        function pop_LesLindarsEntresol_3857_5(feature, layer) {
             let url = feature.properties['360']
             layer.on({
                 mouseout: function(e) {
@@ -189,9 +192,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});*/
         }
 
-        function style_LesLindarsEntresol_4_0() {
+        function style_LesLindarsEntresol_3857_5_0() {
             return {
-                pane: 'pane_LesLindarsEntresol_4',
+                pane: 'pane_LesLindarsEntresol_3857_5',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(83,83,83,1.0)',
@@ -205,115 +208,58 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_LesLindarsEntresol_4');
-        map.getPane('pane_LesLindarsEntresol_4').style.zIndex = 404;
-        map.getPane('pane_LesLindarsEntresol_4').style['mix-blend-mode'] = 'normal';
-        var layer_LesLindarsEntresol_4 = new L.geoJson(json_LesLindarsEntresol_4, {
+        map.createPane('pane_LesLindarsEntresol_3857_5');
+        map.getPane('pane_LesLindarsEntresol_3857_5').style.zIndex = 405;
+        map.getPane('pane_LesLindarsEntresol_3857_5').style['mix-blend-mode'] = 'normal';
+        var layer_LesLindarsEntresol_3857_5 = new L.geoJson(json_LesLindarsEntresol_3857_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_LesLindarsEntresol_4',
-            layerName: 'layer_LesLindarsEntresol_4',
-            pane: 'pane_LesLindarsEntresol_4',
-            onEachFeature: pop_LesLindarsEntresol_4,
+            dataVar: 'json_LesLindarsEntresol_3857_5',
+            layerName: 'layer_LesLindarsEntresol_3857_5',
+            pane: 'pane_LesLindarsEntresol_3857_5',
+            onEachFeature: pop_LesLindarsEntresol_3857_5,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_LesLindarsEntresol_4_0(feature));
+                return L.circleMarker(latlng, style_LesLindarsEntresol_3857_5_0(feature));
             },
         });
-        bounds_group.addLayer(layer_LesLindarsEntresol_4);
+        bounds_group.addLayer(layer_LesLindarsEntresol_3857_5);
 
-        // Regroupement entresol
-        // Pas de groupe pour l'instant (plusieurs plans image)
+        // groupe EntreSol
+        var es = L.layerGroup([layer_LesLindarsEntresol_3857_5, layer_ExtraitNIveauintermdiaire_georef_3857_4, layer_DOEniventresol1_50_georeferenced_3857_3]);
 
         // Plan R+1 image
-        map.createPane('pane_DOEniv11_50_georeferenced_5');
-        map.getPane('pane_DOEniv11_50_georeferenced_5').style.zIndex = 405;
-        var img_DOEniv11_50_georeferenced_5 = 'data/DOEniv11_50_georeferenced_5.png';
-        var img_bounds_DOEniv11_50_georeferenced_5 = [[46.00538382339329,6.693549325626866],[46.0058333389632,6.694765712530171]];
-        var layer_DOEniv11_50_georeferenced_5 = new L.imageOverlay(img_DOEniv11_50_georeferenced_5,
-                                              img_bounds_DOEniv11_50_georeferenced_5,
-                                              {pane: 'pane_DOEniv11_50_georeferenced_5'});
-        bounds_group.addLayer(layer_DOEniv11_50_georeferenced_5);
+        map.createPane('pane_DOEniv11_50_georeferenced_3857_6');
+        map.getPane('pane_DOEniv11_50_georeferenced_3857_6').style.zIndex = 406;
+        var img_DOEniv11_50_georeferenced_3857_6 = 'data/DOEniv11_50_georeferenced_3857_6.png';
+        var img_bounds_DOEniv11_50_georeferenced_3857_6 = [[46.00547550157443,6.693734188309583],[46.005748040160874,6.694525569501196]];
+        var layer_DOEniv11_50_georeferenced_3857_6 = new L.imageOverlay(img_DOEniv11_50_georeferenced_3857_6,
+                                              img_bounds_DOEniv11_50_georeferenced_3857_6,
+                                              {pane: 'pane_DOEniv11_50_georeferenced_3857_6'});
+        bounds_group.addLayer(layer_DOEniv11_50_georeferenced_3857_6);
 
-        // points de vue R+1
-        function pop_LesLindarsR1_6(feature, layer) {
-            let url = feature.properties['360']
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-                mousedown: function(e) {
-                    showPannellum(url)
-                }
-            });
-            /*var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><strong>id</strong><br />' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['360'] !== null ? '<img src="images/' + String(feature.properties['360']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});*/
-        }
+        map.createPane('pane_ExtraitR1barsanitaires_georef_3857_7');
+        map.getPane('pane_ExtraitR1barsanitaires_georef_3857_7').style.zIndex = 407;
+        var img_ExtraitR1barsanitaires_georef_3857_7 = 'data/ExtraitR1barsanitaires_georef_3857_7.png';
+        var img_bounds_ExtraitR1barsanitaires_georef_3857_7 = [[46.00548362425671,6.693979829207706],[46.00570100549376,6.694397327339499]];
+        var layer_ExtraitR1barsanitaires_georef_3857_7 = new L.imageOverlay(img_ExtraitR1barsanitaires_georef_3857_7,
+                                              img_bounds_ExtraitR1barsanitaires_georef_3857_7,
+                                              {pane: 'pane_ExtraitR1barsanitaires_georef_3857_7'});
+        bounds_group.addLayer(layer_ExtraitR1barsanitaires_georef_3857_7);
 
-        function style_LesLindarsR1_6_0() {
-            return {
-                pane: 'pane_LesLindarsR1_6',
-                radius: 10.0,
-                opacity: 1,
-                color: 'rgba(83,83,83,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(247,247,247,1.0)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_LesLindarsR1_6');
-        map.getPane('pane_LesLindarsR1_6').style.zIndex = 406;
-        map.getPane('pane_LesLindarsR1_6').style['mix-blend-mode'] = 'normal';
-        var layer_LesLindarsR1_6 = new L.geoJson(json_LesLindarsR1_6, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_LesLindarsR1_6',
-            layerName: 'layer_LesLindarsR1_6',
-            pane: 'pane_LesLindarsR1_6',
-            onEachFeature: pop_LesLindarsR1_6,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_LesLindarsR1_6_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_LesLindarsR1_6);
+        map.createPane('pane_ExtraitR1salleanimationBureaux_georef_3857_8');
+        map.getPane('pane_ExtraitR1salleanimationBureaux_georef_3857_8').style.zIndex = 408;
+        var img_ExtraitR1salleanimationBureaux_georef_3857_8 = 'data/ExtraitR1salleanimationBureaux_georef_3857_8.png';
+        var img_bounds_ExtraitR1salleanimationBureaux_georef_3857_8 = [[46.00556603302974,6.693979219941378],[46.005783232859706,6.694396403255228]];
+        var layer_ExtraitR1salleanimationBureaux_georef_3857_8 = new L.imageOverlay(img_ExtraitR1salleanimationBureaux_georef_3857_8,
+                                              img_bounds_ExtraitR1salleanimationBureaux_georef_3857_8,
+                                              {pane: 'pane_ExtraitR1salleanimationBureaux_georef_3857_8'});
+        bounds_group.addLayer(layer_ExtraitR1salleanimationBureaux_georef_3857_8);
 
-        // Regroupement R+1
-        var rp1 = L.layerGroup([layer_LesLindarsR1_6, layer_DOEniv11_50_georeferenced_5]);
-        
-        // Plan R+2 image        
-        map.createPane('pane_DOEniv21_50_georeferenced_7');
-        map.getPane('pane_DOEniv21_50_georeferenced_7').style.zIndex = 407;
-        var img_DOEniv21_50_georeferenced_7 = 'data/DOEniv21_50_georeferenced_7.png';
-        var img_bounds_DOEniv21_50_georeferenced_7 = [[46.00538382339329,6.693549325626866],[46.0058333389632,6.694765712530171]];
-        var layer_DOEniv21_50_georeferenced_7 = new L.imageOverlay(img_DOEniv21_50_georeferenced_7,
-                                              img_bounds_DOEniv21_50_georeferenced_7,
-                                              {pane: 'pane_DOEniv21_50_georeferenced_7'});
-        bounds_group.addLayer(layer_DOEniv21_50_georeferenced_7);
-
-        // Points de vue R+2
-        function pop_LesLindarsR2_8(feature, layer) {
+        function pop_LesLindarsR1_3857_9(feature, layer) {
             let url = feature.properties['360']
             layer.on({
                 mouseout: function(e) {
@@ -337,9 +283,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});*/
         }
 
-        function style_LesLindarsR2_8_0() {
+        function style_LesLindarsR1_3857_9_0() {
             return {
-                pane: 'pane_LesLindarsR2_8',
+                pane: 'pane_LesLindarsR1_3857_9',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(83,83,83,1.0)',
@@ -353,33 +299,109 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_LesLindarsR2_8');
-        map.getPane('pane_LesLindarsR2_8').style.zIndex = 408;
-        map.getPane('pane_LesLindarsR2_8').style['mix-blend-mode'] = 'normal';
-        var layer_LesLindarsR2_8 = new L.geoJson(json_LesLindarsR2_8, {
+        map.createPane('pane_LesLindarsR1_3857_9');
+        map.getPane('pane_LesLindarsR1_3857_9').style.zIndex = 409;
+        map.getPane('pane_LesLindarsR1_3857_9').style['mix-blend-mode'] = 'normal';
+        var layer_LesLindarsR1_3857_9 = new L.geoJson(json_LesLindarsR1_3857_9, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_LesLindarsR2_8',
-            layerName: 'layer_LesLindarsR2_8',
-            pane: 'pane_LesLindarsR2_8',
-            onEachFeature: pop_LesLindarsR2_8,
+            dataVar: 'json_LesLindarsR1_3857_9',
+            layerName: 'layer_LesLindarsR1_3857_9',
+            pane: 'pane_LesLindarsR1_3857_9',
+            onEachFeature: pop_LesLindarsR1_3857_9,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_LesLindarsR2_8_0(feature));
+                return L.circleMarker(latlng, style_LesLindarsR1_3857_9_0(feature));
             },
         });
-        bounds_group.addLayer(layer_LesLindarsR2_8);
+        bounds_group.addLayer(layer_LesLindarsR1_3857_9);
 
-        // Regroupement R+2
-        var rp2 = L.layerGroup([layer_LesLindarsR2_8, layer_DOEniv21_50_georeferenced_7]);
+        // Groupe R+1
+        var rp1 = L.layerGroup([layer_LesLindarsR1_3857_9, layer_ExtraitR1salleanimationBureaux_georef_3857_8, layer_ExtraitR1barsanitaires_georef_3857_7, layer_DOEniv11_50_georeferenced_3857_6]);
+
+        // Plan R+2 image
+        map.createPane('pane_DOEniv21_50_georeferenced_3857_10');
+        map.getPane('pane_DOEniv21_50_georeferenced_3857_10').style.zIndex = 410;
+        var img_DOEniv21_50_georeferenced_3857_10 = 'data/DOEniv21_50_georeferenced_3857_10.png';
+        var img_bounds_DOEniv21_50_georeferenced_3857_10 = [[46.00547550157443,6.693734188309583],[46.005748040160874,6.694525569501196]];
+        var layer_DOEniv21_50_georeferenced_3857_10 = new L.imageOverlay(img_DOEniv21_50_georeferenced_3857_10,
+                                              img_bounds_DOEniv21_50_georeferenced_3857_10,
+                                              {pane: 'pane_DOEniv21_50_georeferenced_3857_10'});
+        bounds_group.addLayer(layer_DOEniv21_50_georeferenced_3857_10);
+
+        function pop_LesLindarsR2_3857_11(feature, layer) {
+            let url = feature.properties['360']
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+                mousedown: function(e) {
+                    showPannellum(url)
+                }
+            });
+            /*var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['360'] !== null ? '<img src="images/' + String(feature.properties['360']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});*/
+        }
+
+        function style_LesLindarsR2_3857_11_0() {
+            return {
+                pane: 'pane_LesLindarsR2_3857_11',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(83,83,83,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,247,247,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LesLindarsR2_3857_11');
+        map.getPane('pane_LesLindarsR2_3857_11').style.zIndex = 411;
+        map.getPane('pane_LesLindarsR2_3857_11').style['mix-blend-mode'] = 'normal';
+        var layer_LesLindarsR2_3857_11 = new L.geoJson(json_LesLindarsR2_3857_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LesLindarsR2_3857_11',
+            layerName: 'layer_LesLindarsR2_3857_11',
+            pane: 'pane_LesLindarsR2_3857_11',
+            onEachFeature: pop_LesLindarsR2_3857_11,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_LesLindarsR2_3857_11_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_LesLindarsR2_3857_11);
+
+        // Groupe R+2
+        var rp2 = L.layerGroup([layer_LesLindarsR2_3857_11, layer_DOEniv21_50_georeferenced_3857_10]);
 
         var baseMaps = {};
-        /*L.control.layers(baseMaps,{'<img src="legend/LesLindarsR2_8.png" /> LesLindarsR+2': layer_LesLindarsR2_8,"DOE  niv 2 1_50_georeferenced": layer_DOEniv21_50_georeferenced_7,'<img src="legend/LesLindarsR1_6.png" /> LesLindarsR+1': layer_LesLindarsR1_6,"DOE  niv 1 1_50_georeferenced": layer_DOEniv11_50_georeferenced_5,'<img src="legend/LesLindarsEntresol_4.png" /> LesLindarsEntresol': layer_LesLindarsEntresol_4,"Extrait-NIveau intermédiaire_georef": layer_ExtraitNIveauintermdiaire_georef_3,"DOE  niv entre sol 1_50_georeferenced": layer_DOEniventresol1_50_georeferenced_2,'<img src="legend/LesLindarsRDC_1.png" /> LesLindarsRDC': layer_LesLindarsRDC_1,"DOE  niv 0 1_50_georeferenced": layer_DOEniv01_50_georeferenced_0,},{collapsed:false}).addTo(map);*/
 
-        L.control.layers(baseMaps,{'<img src="legend/LesLindarsR2_8.png" /> LesLindarsR+2': rp2,'<img src="legend/LesLindarsR1_6.png" /> LesLindarsR+1': rp1,'<img src="legend/LesLindarsEntresol_4.png" /> LesLindarsEntresol': layer_LesLindarsEntresol_4,"Extrait-NIveau intermédiaire_georef": layer_ExtraitNIveauintermdiaire_georef_3,"DOE  niv entre sol 1_50_georeferenced": layer_DOEniventresol1_50_georeferenced_2,'<img src="legend/LesLindarsRDC_1.png" /> LesLindarsRDC': rdc,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/LesLindarsR2_3857_11.png" /> 360 R+2': layer_LesLindarsR2_3857_11,"Plan R+2": layer_DOEniv21_50_georeferenced_3857_10,'<img src="legend/LesLindarsR1_3857_9.png" /> 360 R+1': layer_LesLindarsR1_3857_9,"Relevé salle animation+Bureaux R+1": layer_ExtraitR1salleanimationBureaux_georef_3857_8,"Relevé bar+sanitaires R+1": layer_ExtraitR1barsanitaires_georef_3857_7,"Plan R+1": layer_DOEniv11_50_georeferenced_3857_6,'<img src="legend/LesLindarsEntresol_3857_5.png" /> 360 Entresol': layer_LesLindarsEntresol_3857_5,"Relevé Entresol": layer_ExtraitNIveauintermdiaire_georef_3857_4,"Plan Entresol": layer_DOEniventresol1_50_georeferenced_3857_3,'<img src="legend/LesLindarsRDC_3857_2.png" /> 360 RDC': layer_LesLindarsRDC_3857_2,"Plan RDC": layer_DOEniv01_50_georeferenced_3857_1,},{collapsed:false}).addTo(map);
+
+        /*L.control.layers(baseMaps,{'<img src="legend/LesLindarsR2_3857_11.png" /> LesLindarsR+2_3857': rp2,'<img src="legend/LesLindarsR1_3857_9.png" /> LesLindarsR+1_3857': layer_LesLindarsR1_3857_9,"Extrait-R+1 salle animation+Bureaux _georef_3857": layer_ExtraitR1salleanimationBureaux_georef_3857_8,"Extrait-R+1 bar+sanitaires_georef_3857": layer_ExtraitR1barsanitaires_georef_3857_7,"DOE  niv 1 1_50_georeferenced_3857": layer_DOEniv11_50_georeferenced_3857_6,'<img src="legend/LesLindarsEntresol_3857_5.png" /> LesLindarsEntresol_3857': layer_LesLindarsEntresol_3857_5,"Extrait-NIveau intermédiaire_georef_3857": layer_ExtraitNIveauintermdiaire_georef_3857_4,"DOE  niv entre sol 1_50_georeferenced_3857": layer_DOEniventresol1_50_georeferenced_3857_3,'<img src="legend/LesLindarsRDC_3857_2.png" /> LesLindarsRDC_3857': rdc,},{collapsed:false}).addTo(map);*/
+
+        /*L.control.layers(baseMaps,{'<img src="legend/LesLindarsRDC_3857_2.png" /> LesLindarsRDC_3857': rdc,},{collapsed:false}).addTo(map);*/
 
         setBounds();
         L.ImageOverlay.include({
@@ -387,6 +409,7 @@
                 return this._bounds;
             }
         });
+
 
         function showPannellum(url) {
             console.log(url);            
