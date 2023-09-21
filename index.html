@@ -39,6 +39,38 @@
         <script src="data/LesLindarsR2_3857_11.js"></script>
 
         <script>
+
+        var selectedPoint;
+        console.log(selectedPoint);
+
+        function resetSelectPointStyle() {
+            if (selectedPoint) {
+                selectedPoint.setStyle({
+                    fillColor: 'rgba(247,247,247,1.0)', // Réinitialisez le style ici
+                    fillOpacity: 1
+                });
+            }
+        }
+
+        function selectPoint(e) {
+            console.log("Point sélectionné");
+            resetSelectPointStyle(); // Réinitialisez le style du point précédemment sélectionné
+            selectedPoint = e.target;
+
+            selectedPoint.setStyle({
+                fillColor: '#ffff00', // Style du point sélectionné
+                fillOpacity: 1
+            });
+
+            // Obtenez l'URL de la propriété '360' du point sélectionné
+            let url = selectedPoint.feature.properties['360'];
+
+            // Vérifiez si l'URL existe
+            if (url) {
+                // Appelez la fonction showPannellum avec l'URL
+                showPannellum(url);
+            }
+        }
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
@@ -85,18 +117,15 @@
         bounds_group.addLayer(layer_DOEniv01_50_georeferenced_3857_1);
 
         // 360 RDC
-        function pop_LesLindarsRDC_3857_2(feature, layer) {
-            let url = feature.properties['360']
+        function pop_LesLindarsRDC_3857_2(feature, layer) {            
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-                mousedown: function(e) {
-                    showPannellum(url)
-                }
+                // mouseout: function(e) {
+                //     for (i in e.target._eventParents) {
+                //         e.target._eventParents[i].resetStyle(e.target);
+                //     }
+                // },
+                // mouseover: highlightFeature,
+                mousedown: selectPoint
             });
 
             /*var popupContent = '<table>\
@@ -168,18 +197,15 @@
                                               {pane: 'pane_ExtraitNIveauintermdiaire_georef_3857_4'});
         bounds_group.addLayer(layer_ExtraitNIveauintermdiaire_georef_3857_4);
 
-        function pop_LesLindarsEntresol_3857_5(feature, layer) {
-            let url = feature.properties['360']
+        function pop_LesLindarsEntresol_3857_5(feature, layer) {            
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-                mousedown: function(e) {
-                    showPannellum(url)
-                }
+                // mouseout: function(e) {
+                //     for (i in e.target._eventParents) {
+                //         e.target._eventParents[i].resetStyle(e.target);
+                //     }
+                // },
+                // mouseover: highlightFeature,
+                mousedown: selectPoint
             });
             /*var popupContent = '<table>\
                     <tr>\
@@ -259,18 +285,15 @@
                                               {pane: 'pane_ExtraitR1salleanimationBureaux_georef_3857_8'});
         bounds_group.addLayer(layer_ExtraitR1salleanimationBureaux_georef_3857_8);
 
-        function pop_LesLindarsR1_3857_9(feature, layer) {
-            let url = feature.properties['360']
+        function pop_LesLindarsR1_3857_9(feature, layer) {            
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-                mousedown: function(e) {
-                    showPannellum(url)
-                }
+                // mouseout: function(e) {
+                //     for (i in e.target._eventParents) {
+                //         e.target._eventParents[i].resetStyle(e.target);
+                //     }
+                // },
+                // mouseover: highlightFeature,
+                mousedown: selectPoint
             });
             /*var popupContent = '<table>\
                     <tr>\
@@ -332,18 +355,15 @@
                                               {pane: 'pane_DOEniv21_50_georeferenced_3857_10'});
         bounds_group.addLayer(layer_DOEniv21_50_georeferenced_3857_10);
 
-        function pop_LesLindarsR2_3857_11(feature, layer) {
-            let url = feature.properties['360']
+        function pop_LesLindarsR2_3857_11(feature, layer) {            
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-                mousedown: function(e) {
-                    showPannellum(url)
-                }
+                // mouseout: function(e) {
+                //     for (i in e.target._eventParents) {
+                //         e.target._eventParents[i].resetStyle(e.target);
+                //     }
+                // },
+                // mouseover: highlightFeature,
+                mousedown: selectPoint
             });
             /*var popupContent = '<table>\
                     <tr>\
