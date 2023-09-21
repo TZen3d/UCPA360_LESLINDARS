@@ -40,6 +40,30 @@
 
         <script>
 
+        /*// Fonction pour afficher l'image 360 dans Pannellum
+        function showPannellumOnLoad(url) {
+            console.log(url);            
+            pannellum.viewer('panorama', {
+                "type": "equirectangular",
+                "panorama": url,
+                "autoLoad": true                
+            });
+        }
+
+        // Sélectionnez un point de la couche layer_LesLindarsRDC_3857_2 pour afficher l'image 360
+        var firstFeature = json_LesLindarsRDC_3857_2.features[0]; // Vous devrez peut-être adapter ceci selon le point que vous souhaitez sélectionner.
+        console.log(firstFeature)
+        // firstFeature.setStyle({
+        //     fillColor: '#ffff00', // Style du point sélectionné
+        //     fillOpacity: 1
+        // })
+        if (firstFeature) {
+            var firstImageUrl = firstFeature.properties['360'];
+            if (firstImageUrl) {
+                showPannellumOnLoad(firstImageUrl);
+            }
+        }*/
+
         var selectedPoint;
         console.log(selectedPoint);
 
@@ -56,6 +80,7 @@
             console.log("Point sélectionné");
             resetSelectPointStyle(); // Réinitialisez le style du point précédemment sélectionné
             selectedPoint = e.target;
+            console.log(selectedPoint)
 
             selectedPoint.setStyle({
                 fillColor: '#ffff00', // Style du point sélectionné
@@ -117,7 +142,8 @@
         bounds_group.addLayer(layer_DOEniv01_50_georeferenced_3857_1);
 
         // 360 RDC
-        function pop_LesLindarsRDC_3857_2(feature, layer) {            
+        function pop_LesLindarsRDC_3857_2(feature, layer) {
+                 
             layer.on({
                 // mouseout: function(e) {
                 //     for (i in e.target._eventParents) {
@@ -175,8 +201,24 @@
         });
         bounds_group.addLayer(layer_LesLindarsRDC_3857_2,);
 
+        // console.log(layer_LesLindarsRDC_3857_2)
+
+        // Sélectionnez la couche layer_LesLindarsRDC_3857_2 pour obtenir la référence au marqueur
+        var layer = layer_LesLindarsRDC_3857_2;
+
+        // Obtenez une référence au premier marqueur dans la couche
+        var firstMarker = layer.getLayers()[0]; // Assurez-vous que votre marqueur est bien le premier dans la couche.
+
+        // console.log(firstMarker)
+
+        if (firstMarker) {
+            // Simulez un clic sur le marqueur
+            firstMarker.fire('mousedown');
+        }
+        
         // Groupe RDC
         var rdc = L.layerGroup([layer_LesLindarsRDC_3857_2, layer_DOEniv01_50_georeferenced_3857_1]);
+        rdc.addTo(map);
 
         // Plan Entresol image
         map.createPane('pane_DOEniventresol1_50_georeferenced_3857_3');
@@ -436,7 +478,7 @@
             pannellum.viewer('panorama', {
                 "type": "equirectangular",
                 "panorama": url,
-                "autoLoad": true
+                "autoLoad": true                
             });
         }
 
