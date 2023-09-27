@@ -37,6 +37,9 @@
         <script src="data/LesLindarsEntresol_3857_5.js"></script>
         <script src="data/LesLindarsR1_3857_9.js"></script>
         <script src="data/LesLindarsR2_3857_11.js"></script>
+        <script src="data/LesLindarsR5_3857_12.js"></script>
+        <script src="data/LesLindarsR6_3857_14.js"></script>
+        <script src="data/LesLindarsR8_3857_16.js"></script>
 
         <script>
 
@@ -457,9 +460,215 @@
         // Groupe R+2
         var rp2 = L.layerGroup([layer_LesLindarsR2_3857_11, layer_DOEniv21_50_georeferenced_3857_10]);
 
+
+
+
+        // Plan R+5
+        map.createPane('pane_DOEniv51_50_georeferenced_3857_11');
+        map.getPane('pane_DOEniv51_50_georeferenced_3857_11').style.zIndex = 411;
+        var img_DOEniv51_50_georeferenced_3857_11 = 'data/DOEniv51_50_georeferenced_3857_11.png';
+        var img_bounds_DOEniv51_50_georeferenced_3857_11 = [[46.005473177499695,6.693734188309583],[46.00574804016097,6.694525569501196]];
+        var layer_DOEniv51_50_georeferenced_3857_11 = new L.imageOverlay(img_DOEniv51_50_georeferenced_3857_11,
+                                              img_bounds_DOEniv51_50_georeferenced_3857_11,
+                                              {pane: 'pane_DOEniv51_50_georeferenced_3857_11'});
+        bounds_group.addLayer(layer_DOEniv51_50_georeferenced_3857_11);
+
+        function pop_LesLindarsR5_3857_12(feature, layer) {
+            layer.on({
+                // mouseout: function(e) {
+                //     for (i in e.target._eventParents) {
+                //         e.target._eventParents[i].resetStyle(e.target);
+                //     }
+                // },
+                // mouseover: highlightFeature,
+                mousedown: selectPoint
+            });
+            /*var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['360'] !== null ? '<img src="images/' + String(feature.properties['360']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});*/
+        }
+
+        function style_LesLindarsR5_3857_12_0() {
+            return {
+                pane: 'pane_LesLindarsR5_3857_12',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(83,83,83,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,247,247,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LesLindarsR5_3857_12');
+        map.getPane('pane_LesLindarsR5_3857_12').style.zIndex = 412;
+        map.getPane('pane_LesLindarsR5_3857_12').style['mix-blend-mode'] = 'normal';
+        var layer_LesLindarsR5_3857_12 = new L.geoJson(json_LesLindarsR5_3857_12, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LesLindarsR5_3857_12',
+            layerName: 'layer_LesLindarsR5_3857_12',
+            pane: 'pane_LesLindarsR5_3857_12',
+            onEachFeature: pop_LesLindarsR5_3857_12,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_LesLindarsR5_3857_12_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_LesLindarsR5_3857_12);
+
+
+        // Plan R+6
+        map.createPane('pane_DOEniv61_50_georeferenced_3857_13');
+        map.getPane('pane_DOEniv61_50_georeferenced_3857_13').style.zIndex = 413;
+        var img_DOEniv61_50_georeferenced_3857_13 = 'data/DOEniv61_50_georeferenced_3857_13.png';
+        var img_bounds_DOEniv61_50_georeferenced_3857_13 = [[46.005473177499695,6.693734188309583],[46.00574804016097,6.694525569501196]];
+        var layer_DOEniv61_50_georeferenced_3857_13 = new L.imageOverlay(img_DOEniv61_50_georeferenced_3857_13,
+                                              img_bounds_DOEniv61_50_georeferenced_3857_13,
+                                              {pane: 'pane_DOEniv61_50_georeferenced_3857_13'});
+        bounds_group.addLayer(layer_DOEniv61_50_georeferenced_3857_13);
+        function pop_LesLindarsR6_3857_14(feature, layer) {
+            layer.on({
+                // mouseout: function(e) {
+                //     for (i in e.target._eventParents) {
+                //         e.target._eventParents[i].resetStyle(e.target);
+                //     }
+                // },
+                // mouseover: highlightFeature,
+                mousedown: selectPoint
+            });
+            /*var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['360'] !== null ? '<img src="images/' + String(feature.properties['360']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});*/
+        }
+
+        function style_LesLindarsR6_3857_14_0() {
+            return {
+                pane: 'pane_LesLindarsR6_3857_14',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(83,83,83,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,247,247,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LesLindarsR6_3857_14');
+        map.getPane('pane_LesLindarsR6_3857_14').style.zIndex = 414;
+        map.getPane('pane_LesLindarsR6_3857_14').style['mix-blend-mode'] = 'normal';
+        var layer_LesLindarsR6_3857_14 = new L.geoJson(json_LesLindarsR6_3857_14, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LesLindarsR6_3857_14',
+            layerName: 'layer_LesLindarsR6_3857_14',
+            pane: 'pane_LesLindarsR6_3857_14',
+            onEachFeature: pop_LesLindarsR6_3857_14,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_LesLindarsR6_3857_14_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_LesLindarsR6_3857_14);
+
+        // Plan R+8
+        map.createPane('pane_DOEniv81_50_georeferenced_3857_15');
+        map.getPane('pane_DOEniv81_50_georeferenced_3857_15').style.zIndex = 415;
+        var img_DOEniv81_50_georeferenced_3857_15 = 'data/DOEniv81_50_georeferenced_3857_15.png';
+        var img_bounds_DOEniv81_50_georeferenced_3857_15 = [[46.00547550157443,6.693734188309583],[46.005748040160874,6.694525569501196]];
+        var layer_DOEniv81_50_georeferenced_3857_15 = new L.imageOverlay(img_DOEniv81_50_georeferenced_3857_15,
+                                              img_bounds_DOEniv81_50_georeferenced_3857_15,
+                                              {pane: 'pane_DOEniv81_50_georeferenced_3857_15'});
+        bounds_group.addLayer(layer_DOEniv81_50_georeferenced_3857_15);
+        function pop_LesLindarsR8_3857_16(feature, layer) {
+            layer.on({
+                // mouseout: function(e) {
+                //     for (i in e.target._eventParents) {
+                //         e.target._eventParents[i].resetStyle(e.target);
+                //     }
+                // },
+                // mouseover: highlightFeature,
+                mousedown: selectPoint
+            });
+            /*var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['360'] !== null ? '<img src="images/' + String(feature.properties['360']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});*/
+        }
+
+        function style_LesLindarsR8_3857_16_0() {
+            return {
+                pane: 'pane_LesLindarsR8_3857_16',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(83,83,83,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,247,247,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LesLindarsR8_3857_16');
+        map.getPane('pane_LesLindarsR8_3857_16').style.zIndex = 416;
+        map.getPane('pane_LesLindarsR8_3857_16').style['mix-blend-mode'] = 'normal';
+        var layer_LesLindarsR8_3857_16 = new L.geoJson(json_LesLindarsR8_3857_16, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LesLindarsR8_3857_16',
+            layerName: 'layer_LesLindarsR8_3857_16',
+            pane: 'pane_LesLindarsR8_3857_16',
+            onEachFeature: pop_LesLindarsR8_3857_16,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_LesLindarsR8_3857_16_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_LesLindarsR8_3857_16);
+
+
+
+
         var baseMaps = {};
 
-        L.control.layers(baseMaps,{'<img src="legend/LesLindarsR2_3857_11.png" /> 360 R+2': layer_LesLindarsR2_3857_11,"Plan R+2": layer_DOEniv21_50_georeferenced_3857_10,'<img src="legend/LesLindarsR1_3857_9.png" /> 360 R+1': layer_LesLindarsR1_3857_9,"Relevé salle animation+Bureaux R+1": layer_ExtraitR1salleanimationBureaux_georef_3857_8,"Relevé bar+sanitaires R+1": layer_ExtraitR1barsanitaires_georef_3857_7,"Plan R+1": layer_DOEniv11_50_georeferenced_3857_6,'<img src="legend/LesLindarsEntresol_3857_5.png" /> 360 Entresol': layer_LesLindarsEntresol_3857_5,"Relevé Entresol": layer_ExtraitNIveauintermdiaire_georef_3857_4,"Plan Entresol": layer_DOEniventresol1_50_georeferenced_3857_3,'<img src="legend/LesLindarsRDC_3857_2.png" /> 360 RDC': layer_LesLindarsRDC_3857_2,"Plan RDC": layer_DOEniv01_50_georeferenced_3857_1,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/LesLindarsR8_3857_16.png" /> LesLindarsR+8_3857': layer_LesLindarsR8_3857_16,"DOE  niv 8 1_50_georeferenced_3857": layer_DOEniv81_50_georeferenced_3857_15,'<img src="legend/LesLindarsR6_3857_14.png" /> LesLindarsR+6_3857': layer_LesLindarsR6_3857_14,"DOE  niv 6 1_50_georeferenced_3857": layer_DOEniv61_50_georeferenced_3857_13,'<img src="legend/LesLindarsR5_3857_12.png" /> LesLindarsR+5_3857': layer_LesLindarsR5_3857_12,"DOE  niv 5 1_50_georeferenced_3857": layer_DOEniv51_50_georeferenced_3857_11,'<img src="legend/LesLindarsR2_3857_11.png" /> 360 R+2': layer_LesLindarsR2_3857_11,"Plan R+2": layer_DOEniv21_50_georeferenced_3857_10,'<img src="legend/LesLindarsR1_3857_9.png" /> 360 R+1': layer_LesLindarsR1_3857_9,"Relevé salle animation+Bureaux R+1": layer_ExtraitR1salleanimationBureaux_georef_3857_8,"Relevé bar+sanitaires R+1": layer_ExtraitR1barsanitaires_georef_3857_7,"Plan R+1": layer_DOEniv11_50_georeferenced_3857_6,'<img src="legend/LesLindarsEntresol_3857_5.png" /> 360 Entresol': layer_LesLindarsEntresol_3857_5,"Relevé Entresol": layer_ExtraitNIveauintermdiaire_georef_3857_4,"Plan Entresol": layer_DOEniventresol1_50_georeferenced_3857_3,'<img src="legend/LesLindarsRDC_3857_2.png" /> 360 RDC': layer_LesLindarsRDC_3857_2,"Plan RDC": layer_DOEniv01_50_georeferenced_3857_1,},{collapsed:false}).addTo(map);
 
         /*L.control.layers(baseMaps,{'<img src="legend/LesLindarsR2_3857_11.png" /> LesLindarsR+2_3857': rp2,'<img src="legend/LesLindarsR1_3857_9.png" /> LesLindarsR+1_3857': layer_LesLindarsR1_3857_9,"Extrait-R+1 salle animation+Bureaux _georef_3857": layer_ExtraitR1salleanimationBureaux_georef_3857_8,"Extrait-R+1 bar+sanitaires_georef_3857": layer_ExtraitR1barsanitaires_georef_3857_7,"DOE  niv 1 1_50_georeferenced_3857": layer_DOEniv11_50_georeferenced_3857_6,'<img src="legend/LesLindarsEntresol_3857_5.png" /> LesLindarsEntresol_3857': layer_LesLindarsEntresol_3857_5,"Extrait-NIveau intermédiaire_georef_3857": layer_ExtraitNIveauintermdiaire_georef_3857_4,"DOE  niv entre sol 1_50_georeferenced_3857": layer_DOEniventresol1_50_georeferenced_3857_3,'<img src="legend/LesLindarsRDC_3857_2.png" /> LesLindarsRDC_3857': rdc,},{collapsed:false}).addTo(map);*/
 
