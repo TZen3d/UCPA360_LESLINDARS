@@ -73,7 +73,7 @@
         function resetSelectPointStyle() {
             if (selectedPoint) {
                 selectedPoint.setStyle({
-                    fillColor: 'rgba(247,247,247,1.0)', // Réinitialisez le style ici
+                    fillColor: '#ffffff', // Réinitialisez le style ici
                     fillOpacity: 1
                 });
             }
@@ -86,7 +86,7 @@
             console.log(selectedPoint)
 
             selectedPoint.setStyle({
-                fillColor: '#ffff00', // Style du point sélectionné
+                fillColor: '#ff5353', // Style du point sélectionné
                 fillOpacity: 1
             });
 
@@ -105,17 +105,17 @@
 
             if (e.target.feature.geometry.type === 'LineString') {
               highlightLayer.setStyle({
-                color: '#ffff00',
+                color: '#ff5353',
               });
             } else {
               highlightLayer.setStyle({
-                fillColor: '#ffff00',
+                fillColor: '#ff5353',
                 fillOpacity: 1
               });
             }
         }
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
+            zoomControl:true, maxZoom:24, minZoom:20
         }).fitBounds([[46.00540042096742,6.693589809948811],[46.00585654099085,6.6947764087773995]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a> &middot; <a href="https://www.en3d.fr/">En3d</a>');
